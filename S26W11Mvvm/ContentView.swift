@@ -1,19 +1,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var count: Int = 0
+    @State private var viewModel = CounterViewModel()
     
     var body: some View {
-        VStack {
-            Text("\(count)")
+        VStack(spacing: 30) {
+            Text("\(viewModel.count)")
+                .font(.system(
+                    size: 100,
+                    weight: .bold,
+                    design: .rounded
+                ))
+                .foregroundColor(.blue)
             
-            HStack {
-                Button("감소") {
-                    count -= 1
+            HStack(spacing: 30) {
+                Button {
+                    viewModel.decrement()
+                } label: {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.largeTitle)
                 }
-                Button("증가") {
-                    count += 1
+                .tint(.red)
+                
+                Button {
+                    viewModel.increment()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.largeTitle)
                 }
+                .tint(.green)
             }
         }
         .padding()
