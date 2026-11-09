@@ -1,11 +1,12 @@
 import Foundation
 
 @Observable
+@MainActor
 final class CounterViewModel {
     private var model: CounterModel
     
-    init(model: CounterModel = CounterModel()) {
-        self.model = model
+    init(_ model: CounterModel? = nil) {
+        self.model = model ?? CounterModel()
     }
     
     // MARK: - Properties
